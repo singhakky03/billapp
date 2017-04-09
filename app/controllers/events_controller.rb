@@ -12,7 +12,7 @@ class EventsController < ApplicationController
     @event = Event.new(events_params)
     @event.save
     if @event.save
-      redirect_to @event_path
+      redirect_to event_path(@event)
     end
   end
 

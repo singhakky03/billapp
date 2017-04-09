@@ -30,7 +30,8 @@ test:
   socket: /var/run/mysqld/mysqld.sock
 
 production:
-  adapter: mysql2
+  url: <%= ENV[DATABASE_URL] %>
+  adapter: postgresql
   encoding: utf8
   database: billapp_production
   pool: 5

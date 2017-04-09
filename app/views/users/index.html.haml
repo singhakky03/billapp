@@ -12,4 +12,5 @@
         - @users.each do |user|
           %tr
             %td #{i += 1}
-            %td #{user.name}
+            %td
+              = link_to "#{user.name}", user_path(user)

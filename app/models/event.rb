@@ -17,5 +17,12 @@ class Event < ActiveRecord::Base
 
   scope :from_this_month, lambda { where("date > ? AND date < ?", Time.now.beginning_of_month, Time.now.end_of_month) }
 
+  after_create :set_status_unpaid
+
   Status = ["paid", "unpaid"]
+
+  def set_status_unpaid
+    self.update_columns(status: Event::Status[1])
+  end
+
 end
