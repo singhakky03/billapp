@@ -13,8 +13,9 @@ class Event < ActiveRecord::Base
             :presence => true
 
 
-  validates :total_amount,
-            :presence => true
+  validates :total_amount, :date, :presence => true
+
+  scope :from_this_month, lambda { where("date > ? AND date < ?", Time.now.beginning_of_month, Time.now.end_of_month) }
 
   Status = ["paid", "unpaid"]
 end

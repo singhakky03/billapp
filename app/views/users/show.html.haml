@@ -1,2 +1,24 @@
-%h1 Users#show
-%p Find me in app/views/users/show.html.haml
+%h2 #{@user.name}
+.row
+  .col-sm-4
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title All Total Events Bill Amount
+      .panel-body
+        = @total_bill
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title This months total bill
+      .panel-body
+        = @current_bill
+  .col-sm-4
+    .panel.panel-success
+      .panel-heading
+        %h3.panel-title Paid By You
+      .panel-body
+        = @user_paid
+    .panel.panel-info
+      .panel-heading
+        %h3.panel-title This month you paid bill
+      .panel-body
+        =  @current_paid_bill

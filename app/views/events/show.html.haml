@@ -4,8 +4,6 @@
       %h3.panel-title Event of #{@event.name} on #{@event.date.strftime("%m/%d/%Y")} at #{@event.date.strftime("%I:%M%p")}
     .panel-body
       = "Paid by #{@paid_by}"
-      / d.strftime("Printed on %m/%d/%Y")   #=> "Printed on 11/19/2007"
-      / d.strftime("at %I:%M%p")
 - else
   = bootstrap_form_for(@event, remote: true, :url => event_path(@event), :method => "get") do |f|
     = f.submit "Pay Bill $#{@event.total_amount.to_i}"
@@ -24,7 +22,7 @@
             %td
               %input{:type => "checkbox", :value => "#{user.id}", :id => "checkPayby_#{user.id}", :class => "payingCheck"}/
             %td
-              = user.name
+              = link_to "#{user.name}", user_path(user)
             %td
               %input{:type => "number", :id => "inputPayby_#{user.id}", :placeholder => 0, :disabled => "disabled"}/
 
