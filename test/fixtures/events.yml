@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  loacation: MyString
+  total_amount: 1.5
+  date: 2017-04-07 23:49:01
+
+two:
+  name: MyString
+  loacation: MyString
+  total_amount: 1.5
+  date: 2017-04-07 23:49:01

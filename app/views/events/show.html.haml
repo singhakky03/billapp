@@ -1,0 +1,41 @@
+- if @status
+  .panel.panel-success
+    .panel-heading
+      %h3.panel-title Event of #{@event.name} on #{@event.date.strftime("%m/%d/%Y")} at #{@event.date.strftime("%I:%M%p")}
+    .panel-body
+      = "Paid by #{@paid_by}"
+      / d.strftime("Printed on %m/%d/%Y")   #=> "Printed on 11/19/2007"
+      / d.strftime("at %I:%M%p")
+- else
+  = bootstrap_form_for(@event, remote: true, :url => event_path(@event), :method => "get") do |f|
+    = f.submit "Pay Bill $#{@event.total_amount.to_i}"
+  %h2.sub-header Who will pay
+  #amountMatchErr
+  .table-responsive
+    %table.table.table-striped
+      %thead
+        %tr
+          %th #
+          %th User
+          %th Total Amount
+      %tbody
+        - @users.each do |user|
+          %tr{:id => "userPay#{user.id}"}
+            %td
+              %input{:type => "checkbox", :value => "#{user.id}", :id => "checkPayby_#{user.id}", :class => "payingCheck"}/
+            %td
+              = user.name
+            %td
+              %input{:type => "number", :id => "inputPayby_#{user.id}", :placeholder => 0, :disabled => "disabled"}/
+
+  :javascript
+    $("input[type=checkbox]").click(function() {
+      var userValue = $(this).val();
+      if($(this).is(':checked')){
+        document.getElementById("inputPayby_" + userValue).disabled = false;
+      }else{
+        document.getElementById("inputPayby_" + userValue).disabled = true;
+        document.getElementById("inputPayby_" + userValue).value = "";
+      }
+    })
+

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  total: 1.5
+  paid: 1.5
+  balance: 1.5
+  event_id: 1
+  user_id: 1
+
+two:
+  total: 1.5
+  paid: 1.5
+  balance: 1.5
+  event_id: 1
+  user_id: 1

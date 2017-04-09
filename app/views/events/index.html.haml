@@ -1,0 +1,33 @@
+.row
+  .col-md-8
+    %h3.sub-header Events List
+  .col-md-4
+    = link_to "Add New Event", new_event_path, :class => "btn btn-primary"
+    = link_to "New User", new_user_path, :class => "btn btn-success"
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Event No.
+        %th Event Name
+        %th Location
+        %th Total Amount
+        %th Date
+        %th Action
+    %tbody
+      - i = 0
+      - @events.each do |event|
+        - i = i + 1
+        %tr
+          %td
+            = i
+          %td
+            = event.name
+          %td
+            = event.location
+          %td
+            = event.total_amount
+          %td
+            = event.date
+          %td
+            = link_to "Show", event_path(event)

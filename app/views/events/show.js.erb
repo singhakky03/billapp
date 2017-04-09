@@ -1,0 +1,27 @@
+var values = [];
+var total = 0;
+$("input[type=checkbox]:checked").each(function(){
+    user = $(this).val();
+    amount = $('#inputPayby_' + user).val();
+    total += parseInt(amount);
+    var obj = jQuery.parseJSON( '{ "user": ' + user + ', "amount" : ' + amount + ' }' );
+    values.push(obj);
+});
+var total_bill = <%= params["commit"].gsub("Pay Bill $", "").to_i %>;
+var eventId = <%= @event.id %>
+if(total == total_bill){
+  $.ajax({
+        url: '/bills',
+        data : {details:values, event: eventId},
+        type: 'POST',
+        dataType: 'script',
+        success: function(data) {
+          //eval(data)
+        },
+        error: function(data) {
+
+        }
+      })
+}else{
+  $("#amountMatchErr").text("Pay amount not matching to total bill remaining amount is $" + (total_bill- total))
+}

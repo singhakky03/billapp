@@ -1,0 +1,6 @@
+%h2.sub-header Create New User
+= bootstrap_form_for(@user) do |f|
+  = f.text_field :name, :placeholder => "Enter User Name"
+  = f.submit "Submit"
+
+

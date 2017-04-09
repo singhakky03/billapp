@@ -1,0 +1,7 @@
+= bootstrap_form_for(@event) do |f|
+  = f.text_field :name, :placeholder => "Name"
+  = f.text_field :location, :placeholder => "Location"
+  = f.number_field :total_amount, :placeholder => "Amount"
+  = f.datetime_select :date
+  = f.submit "Submit"
+
