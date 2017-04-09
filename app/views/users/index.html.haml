@@ -1,0 +1,15 @@
+= link_to "Back", root_path, :class => "btn btn-lg btn-info"
+%h2 Users List
+.row
+  .col-md-12
+    %table.table
+      %thead
+        %tr
+          %th #
+          %th Name
+      %tbody
+        - i = 0
+        - @users.each do |user|
+          %tr
+            %td #{i += 1}
+            %td #{user.name}
