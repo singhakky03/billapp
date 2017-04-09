@@ -22,3 +22,14 @@
         %h3.panel-title This month you paid bill
       .panel-body
         =  @current_paid_bill
+
+%h3
+  - j = 0
+  - @info.each do |i|
+    %p
+      - if i.keys[j] == :to
+        = "Pay to #{i[:to]} amount #{i[:amount]}"
+      - else
+        = "#{i[:by]} will pay you #{i[:amount]}"
+      - j += j
+

@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     @current_paid_bill = current_month_paid_bill(@user)
     @user_paid = event_paid_amount(@user)
     details = users_this_month_with_you(@user)
-    pay_arr(@user, details)
+    @info = pay_arr(@user, details).reject { |c| c.empty? }
   end
 
   private
@@ -75,15 +75,25 @@ class UsersController < ApplicationController
   end
 
   def pay_arr(user, details)
-    pay = {}
+    arr = []
     details.each do |detail|
+      pay = {}
       usr = User.find(detail[0])
       if usr != user
-        my_bill = user.bills.where('event_id IN (?)',detail[1][:event])
-
+        total = detail[1][:total]
+        my_bills = user.bills.where('event_id IN (?)',detail[1][:event]).pluck(:paid).sum
+        other_bills = usr.bills.where('event_id IN (?)',detail[1][:event]).pluck(:paid).sum
+        if (total/2) > my_bills
+          pay[:to] = usr.name
+          pay[:amount] = (total/2) - my_bills
+        elsif (total/2) < my_bills
+          pay[:by] = usr.name
+          pay[:amount] = (total/2) - other_bills
+        end
       end
-
+      arr << pay
     end
+    arr
   end
 
 end

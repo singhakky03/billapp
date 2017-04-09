@@ -5,7 +5,6 @@ gem 'rails', '4.0.0'
 
 # Use mysql as the database for Active Record
 
-gem 'mysql2', '~> 0.3.18'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -45,6 +44,7 @@ group :development do
   gem 'awesome_print'
   gem 'haml-rails'
   gem 'quiet_assets'
+  gem 'mysql2', '~> 0.3.18'
 end
 
 group :production do
