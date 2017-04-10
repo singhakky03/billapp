@@ -23,8 +23,10 @@ class UsersController < ApplicationController
     @current_bill = current_month_bill(@user)
     @current_paid_bill = current_month_paid_bill(@user)
     @user_paid = event_paid_amount(@user)
-    details = users_this_month_with_you(@user)
-    @info = pay_arr(@user, details).reject { |c| c.empty? }
+    if is_amount_paid?(@user)
+      details = users_this_month_with_you(@user)
+      @info = pay_arr(@user, details).reject { |c| c.empty? }
+    end
   end
 
   private
@@ -65,6 +67,7 @@ class UsersController < ApplicationController
     json = {}
     events = this_month_events.pluck(:id)
     users = Bill.where('event_id IN (?)', events).pluck(:user_id)
+    users = users.uniq
     users.each do |usr|
       u= User.find(usr)
       bill = Bill.where('user_id = ? AND event_id IN (?)', usr, events)
