@@ -19,7 +19,9 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @status = event_paid?(@event)
-    @paid_by = @event.users.pluck(:name).join(',') if @status
+    @paid_by = []
+    @event.users.map{|u| @paid_by << "Paid By #{u.name} $ #{Bill.where('event_id = ? AND user_id = ?', @event.id, u.id).first.paid}"}
+    #@paid_by = @event.users.pluck(:name).join(',') if @status
     @users = User.all
   end
 

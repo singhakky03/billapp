@@ -31,6 +31,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'thor', '0.19.1'
 
+# Action caching
+gem 'actionpack-action_caching'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

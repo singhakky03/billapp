@@ -3,7 +3,8 @@
     .panel-heading
       %h3.panel-title Event of #{@event.name} on #{@event.date.strftime("%m/%d/%Y")} at #{@event.date.strftime("%I:%M%p")}
     .panel-body
-      = "Paid by #{@paid_by}"
+      - @paid_by.each do |by|
+        = "#{by}"
 - else
   = bootstrap_form_for(@event, remote: true, :url => event_path(@event), :method => "get") do |f|
     = f.submit "Pay Bill $#{@event.total_amount.to_i}"
