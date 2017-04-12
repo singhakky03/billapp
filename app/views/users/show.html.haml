@@ -25,11 +25,7 @@
 - if @info.present?
   %h3
     - j = 0
-    - @info.each do |i|
+    - @info.each do |info|
       %p
-        - if i.keys[j] == :to
-          = "Pay to #{i[:to]} amount #{i[:amount]}"
-        - else
-          = "#{i[:by]} will pay you #{i[:amount]}"
-        - j += j
+        = info
 
