@@ -139,7 +139,7 @@ GEM
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
-    tzinfo (0.3.53)
+    tzinfo (0.3.61)
     uglifier (3.1.13)
       execjs (>= 0.3.0, < 3)
 
